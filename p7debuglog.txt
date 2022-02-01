@@ -1,0 +1,76 @@
+ gcc -g p7original.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x879: file p10original.c, line 50.
+(gdb) info brek
+Undefined info command: "brek".  Try "help info".
+(gdb) info break
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000000879 in main at p10original.c:50
+(gdb) run
+Starting program: /home/runner/pps-test1-pushya1/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p10original.c:50
+50      c1=input();
+(gdb) s
+input () at p10original.c:25
+25  {
+(gdb) n
+27      printf("Enter the real part :");
+(gdb) n
+28      scanf("%f",&c.real);
+(gdb) n
+Enter the real part :5
+29      printf("Enter the imaginary part :");
+(gdb) n
+30      scanf("%f",&c.imaginary);
+(gdb) n
+Enter the imaginary part :2
+31      printf("Complex number is %f+i%f\n",c.real,c.imaginary);
+(gdb) n
+Complex number is 5.000000+i2.000000
+32      return c;
+(gdb) n
+33  }
+(gdb) n
+main () at p10original.c:51
+51      c2=input();
+(gdb) n
+Enter the real part :5
+Enter the imaginary part :2
+Complex number is 5.000000+i2.000000
+52      sum=add(c1,c2);
+(gdb) s
+add (c1=..., c2=...) at p10original.c:38
+38      sum.real = c1.real+c2.real;
+(gdb) n
+39      sum.imaginary=c1.imaginary+c2.imaginary;
+(gdb) n
+40      return sum;
+(gdb) n
+41  }
+(gdb) n
+main () at p10original.c:53
+53      output(c1,c2,sum);
+(gdb) n
+54      return 0;
+(gdb) c
+Continuing.
+sum of 5.000000+i2.000000 and 5.000000+i2.000000 is 10.000000+i4.000000[Inferior 1 (process 116) exited normally]
+(gdb) quit
